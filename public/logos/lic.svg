@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 54" fill="none">
+  <!-- LIC Emblem: Hands protecting flame -->
+  <g transform="translate(8, 7)">
+    <rect width="40" height="40" rx="6" fill="#fdb813"/>
+    <!-- Hands curve -->
+    <path d="M12 28 C12 34, 20 36, 20 36 C20 36, 28 34, 28 28 C28 24, 24 22, 20 22 C16 22, 12 24, 12 28 Z" fill="#00519e"/>
+    <!-- Flame -->
+    <path d="M20 10 C22 14, 24 16, 22 20 C20 18, 18 16, 20 10 Z" fill="#e31b23"/>
+    <circle cx="20" cy="18" r="2" fill="#fdb813"/>
+  </g>
+  <!-- Text -->
+  <text x="56" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" letter-spacing="1" fill="#00519e" class="dark:fill-blue-400">LIC</text>
+  <text x="56" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.5" fill="currentColor">भारतीय जीवन बीमा निगम</text>
+</svg>

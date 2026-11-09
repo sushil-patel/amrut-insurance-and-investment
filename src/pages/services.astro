@@ -1,0 +1,309 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const servicesDetail = [
+  {
+    id: "health",
+    title: "Health Insurance (Mediclaim)",
+    gstBadge: "0% GST Exemption",
+    badgeColor: "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+    partnerBrands: "Care Health • Star Health • Bajaj Allianz",
+    startingRate: "Starting ~₹450/month* for ₹5 Lakh sum insured (Zero Tax)",
+    overview: "Medical inflation in India exceeds 14% annually. Under the landmark 56th GST Council exemption, individual and family health insurance policies are 100% exempt from GST (0% GST), saving you 18% directly on your annual premium. We compare cashless hospital admission networks across Surat and India.",
+    plansCovered: [
+      "Individual Health Insurance (Tailored medical cover for professionals & individuals)",
+      "Family Floater Plans (Single sum insured covering spouse and children with 0% GST)",
+      "Senior Citizen Mediclaim (Specialized plans for parents with pre-existing ailment riders)",
+      "Super Top-up Policies (Cost-effective high-value covers up to ₹1 Crore)",
+      "Critical Illness Rider (Lump sum financial benefit upon diagnosis of 30+ critical illnesses)",
+    ],
+    documentsNeeded: "Proposer PAN & Aadhaar, Age proof, Previous policy copy (if porting), Basic medical history declaration.",
+    waText: "Hello Amrut Patel, I would like to consult on Health Insurance / Mediclaim plans with 0% GST.",
+  },
+  {
+    id: "motor",
+    title: "Car Insurance - Third-Party (TP) & Full Comprehensive",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Turtlemint Network • RenewBuy Network",
+    startingRate: "Statutory TP from ₹2,094/year* (<1000cc) + 18% GST (Total ₹2,471)",
+    overview: "Under the Motor Vehicles Act, Third-Party (TP) insurance is mandatory for all vehicles on Indian roads. We provide statutory TP cover as well as full bumper-to-bumper comprehensive policies with cashless repairs at authorized manufacturer workshops in Surat.",
+    plansCovered: [
+      "Third-Party Liability Only (Mandatory cover for third-party injury, death, and property damage)",
+      "Comprehensive Package Policy (Own damage protection + Third-party liability)",
+      "Zero-Depreciation Add-on (100% claim payout on bumper, glass, plastic, and metal parts)",
+      "Engine & Gearbox Protection (Safeguards against hydrostatic lock and water ingestion)",
+      "24x7 Roadside Assistance, Tyre Protect, and Return to Invoice (RTI)",
+    ],
+    documentsNeeded: "Vehicle Registration Certificate (RC), Previous year policy copy, Claim status declaration (for NCB transfer).",
+    waText: "Hello Amrut Patel, I need an insurance renewal comparison for my car.",
+  },
+  {
+    id: "twowheeler",
+    title: "Full Two-Wheeler Insurance",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Turtlemint • RenewBuy",
+    startingRate: "Statutory TP starts at ₹538/year* (<75cc) + 18% GST (Total ₹635)",
+    overview: "Keep your motorcycle or scooter 100% legal on Indian roads and protected against road accidents, theft, and accidental fire. No physical inspection required for active continuous renewals — share your RC photo on WhatsApp for comparative quotes.",
+    plansCovered: [
+      "Third-Party Liability (Statutory protection against traffic penalties and third-party liabilities)",
+      "Comprehensive Two-Wheeler Package (Own damage repair costs + theft and fire coverage)",
+      "Multi-Year Long Term Policy (1-year OD + 5-year TP packages for newly registered vehicles)",
+      "Personal Accident Cover for Owner-Driver (₹15 Lakh accidental financial cover)",
+    ],
+    documentsNeeded: "Vehicle RC copy (Registration Certificate), Previous policy copy (if available).",
+    waText: "Hello Amrut Patel, I need an insurance policy quote for my two-wheeler.",
+  },
+  {
+    id: "commercial",
+    title: "Commercial Vehicle Insurance (TP & Full)",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Turtlemint • RenewBuy",
+    startingRate: "As per statutory IRDAI commercial tariffs (+ 18% GST)",
+    overview: "Commercial vehicles are the lifeline of business in Surat. Whether you operate an auto-rickshaw, delivery pickup tempo (Tata Ace/Bolero), passenger taxi, or heavy multi-axle goods truck, we ensure compliant renewals and direct surveyor assistance during road incidents.",
+    plansCovered: [
+      "Passenger Carrying Vehicles (Auto-rickshaws, taxis, school vans, staff buses)",
+      "Goods Carrying Commercial Vehicles (Public & private carrier tempos, container trucks)",
+      "Third-Party Legal Liability + Driver and Cleaner legal liability cover (LL to Paid Driver)",
+      "IMT-23 coverage (protects lamps, tyres, tubes, and body parts during overturn or collision)",
+    ],
+    documentsNeeded: "Vehicle RC, Fitness Certificate, Route Permit, Previous Policy copy.",
+    waText: "Hello Amrut Patel, please guide me on Commercial Vehicle Insurance.",
+  },
+  {
+    id: "fire",
+    title: "Fire & Special Perils Insurance",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • National Partner Insurers",
+    startingRate: "Competitive business rates based on property value & risk category",
+    overview: "Protect your commercial building, showroom, retail shop, or godown from unpredictable fire accidents, electrical short-circuits, burst water tanks, earthquake, and flash floods across Surat's commercial districts.",
+    plansCovered: [
+      "Standard Fire and Special Perils (SFSP) Policy",
+      "Bharat Sookshma & Laghu Udyam Suraksha (Tailored for MSME enterprises)",
+      "Shopkeeper Package Insurance (Combines fire, burglary, neon sign, and cash-in-transit)",
+      "Loss of Profit / Business Interruption add-on cover",
+    ],
+    documentsNeeded: "Property address, carpet area, sum insured breakdown (structure vs inventory/stock vs plant/machinery).",
+    waText: "Hello Amrut Patel, I would like to get an assessment for Shop / Fire Insurance.",
+  },
+  {
+    id: "marine",
+    title: "Marine Cargo Insurance",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Commercial Insurers",
+    startingRate: "Custom quotation per consignment or annual turnover",
+    overview: "Surat is India's prominent textile and industrial trading hub. Marine Cargo insurance protects goods, yarn, textiles, raw materials, and machinery against road accidents, derailment, overturning, theft, or sea damage during transit.",
+    plansCovered: [
+      "Inland Transit (Road & Rail transport across Gujarat and all Indian states)",
+      "Marine Open Policy (Annual floating cover for recurring daily textile/goods dispatchers)",
+      "Special Single Transit Policy (Specific high-value one-time machinery moves)",
+      "Institute Cargo Clauses (A, B, and C covers for export/import consignments)",
+    ],
+    documentsNeeded: "Invoiced value of goods, transit route (origin to destination), nature of packaging.",
+    waText: "Hello Amrut Patel, I need Marine Cargo transit insurance for our shipments.",
+  },
+  {
+    id: "pa",
+    title: "PA Insurance (Personal Accident)",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Star Health • Care Health",
+    startingRate: "₹15 Lakh Owner-Driver cover from ₹375/yr* (+18% GST = ₹443) | Standalone ~₹500/yr",
+    overview: "Health insurance covers hospital bills, but Personal Accident insurance provides a direct financial lump sum to you or your nominees in the event of accidental death, permanent loss of limbs or eyesight, or temporary loss of income.",
+    plansCovered: [
+      "Mandatory Compulsory Personal Accident (CPA) for vehicle owners (₹15 Lakh cover)",
+      "Comprehensive Individual Personal Accident (Accidental death + Permanent total/partial disability)",
+      "Temporary Total Disability (Weekly financial compensation during recovery and lost wages)",
+      "Accidental Medical Expenses Reimbursement",
+    ],
+    documentsNeeded: "Nominee details, Proposer PAN & Aadhaar, Occupation classification.",
+    waText: "Hello Amrut Patel, I want to take a Personal Accident (PA) insurance cover.",
+  },
+  {
+    id: "travel",
+    title: "Travel Insurance (Domestic & Overseas)",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Care Health • Star Health",
+    startingRate: "Starting from ₹350 per trip (+ 18% GST)",
+    overview: "Ensure embassy-compliant overseas travel insurance with emergency medical hospitalization abroad, coverage for lost passports or luggage, and reimbursement for unexpected trip cancellations.",
+    plansCovered: [
+      "Schengen Visa Compliant Travel Insurance (€30,000+ medical cover mandatory for Europe)",
+      "USA & Canada Overseas Travel Insurance (Comprehensive inpatient and emergency care)",
+      "Student Overseas Medical & Health Plans",
+      "Corporate Frequent Flyer Annual Multi-Trip Policies",
+    ],
+    documentsNeeded: "Passport copies of travelers, Travel itinerary & dates, Destination countries.",
+    waText: "Hello Amrut Patel, I need Travel Insurance for an upcoming trip.",
+  },
+  {
+    id: "home",
+    title: "Home Insurance",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Leading General Insurers",
+    startingRate: "Comprehensive home structure & content cover starting from ~₹1,200/year*",
+    overview: "Your home is your most valuable personal investment. Safeguard your flat, apartment, or independent bungalow against fire, gas cylinder explosions, earthquakes, floods, and burglary of household appliances and jewelry.",
+    plansCovered: [
+      "Home Structure Protection (Reconstruction cost coverage for natural and accidental perils)",
+      "Household Contents Coverage (Electronics, furniture, air conditioners, home appliances)",
+      "Burglary & Housebreaking Protection",
+      "Valuable Jewelry & Portable Equipment Add-on",
+    ],
+    documentsNeeded: "Carpet area of residence, estimated reconstruction cost, list of major contents.",
+    waText: "Hello Amrut Patel, I would like to enquire about Home Insurance.",
+  },
+  {
+    id: "worker",
+    title: "Factory & Worker Insurance (Workmen's Compensation)",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Commercial General Insurers",
+    startingRate: "Custom rate according to employee wages and occupational risk class",
+    overview: "Under the Employee's Compensation Act, employers and industrial contractors are legally liable to provide compensation to workers in the event of fatal or disabling workplace accidents. We structure compliant WC policies for industrial units and factories in Surat.",
+    plansCovered: [
+      "Workmen's Compensation (WC) Insurance Policy",
+      "Contractor's All Risk (CAR) and Erection All Risk (EAR)",
+      "Industrial All Risks (IAR) for manufacturing units",
+      "Machinery Breakdown & Boiler Explosion insurance",
+    ],
+    documentsNeeded: "List of workers and wage register, nature of manufacturing/factory work, safety declaration.",
+    waText: "Hello Amrut Patel, please guide us on Workmen's Compensation / Factory Insurance.",
+  },
+  {
+    id: "pet",
+    title: "Pet Insurance",
+    gstBadge: "18% Standard GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    partnerBrands: "Bajaj Allianz • Pet Insurers",
+    startingRate: "Starting from ~₹2,500/year* (+ 18% GST)",
+    overview: "Veterinary treatments and surgeries can be expensive. Pet insurance covers veterinary hospitalization expenses, surgical procedures, and third-party bite liability for companion dogs and cats.",
+    plansCovered: [
+      "Surgery & In-clinic Hospitalization Cover",
+      "Accidental Injury Treatment",
+      "Third-Party Legal Liability (Protection if pet causes accidental injury to others)",
+      "Terminal Disease & Critical Care Cover",
+    ],
+    documentsNeeded: "Pet photo, breed, age, and veterinary vaccination certificate.",
+    waText: "Hello Amrut Patel, I would like to get a quote for Pet Insurance.",
+  },
+];
+---
+
+<Layout
+  title="Insurance Services & GST Rates | Amrut Insurance Surat (IRDAI Reg. 2017342)"
+  description="Explore all 11 insurance categories with exact GST rates (0% GST on Health & Life, 18% on Motor). Direct advisory from Amrut Patel in Udhna, Surat."
+  canonicalURL="https://amrutinsurance.in/services"
+>
+  <!-- Page Header -->
+  <div class="py-12 md:py-16 border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-zinc-50/80 via-white to-white dark:from-zinc-950 dark:to-zinc-900/30">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 mb-4 shadow-xs">
+          <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          IRDAI Registration No. 2017342 • 28+ Insurers
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 mb-4 text-balance">
+          Insurance Services &amp; GST Rates
+        </h1>
+        <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed text-balance">
+          We provide transparent policy advisory across all 11 non-life and life insurance categories. Below you will find plan details, applicable GST rates, and required documentation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed GST Tax Guidance Alert -->
+  <div class="bg-zinc-50 dark:bg-zinc-900/40 border-b border-zinc-200 dark:border-zinc-800 py-6">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-4 sm:grid-cols-2 text-xs">
+        <div class="p-4 rounded-xl bg-emerald-50 text-emerald-950 border border-emerald-200 dark:bg-emerald-950/30 dark:border-emerald-900/50 dark:text-emerald-200">
+          <div class="font-bold text-emerald-950 dark:text-emerald-300 text-sm mb-1 flex items-center gap-1.5">
+            <span class="h-2 w-2 rounded-full bg-emerald-600" aria-hidden="true"></span>
+            0% GST Exemption (Nil Tax)
+          </div>
+          <p class="text-emerald-800 dark:text-emerald-400 leading-relaxed">
+            Per the 56th GST Council reform, <strong>Individual Health Insurance, Family Floaters, Senior Citizen Mediclaim, and Individual Term Life Insurance</strong> carry <strong>0% GST</strong>. You save 18% directly on your base premium.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+          <div class="font-bold text-zinc-950 dark:text-zinc-100 text-sm mb-1 flex items-center gap-1.5">
+            <span class="h-2 w-2 rounded-full bg-zinc-400" aria-hidden="true"></span>
+            18% Statutory GST
+          </div>
+          <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <strong>Motor Insurance (Two-wheeler, Car, Commercial vehicles), Fire, Marine Cargo, Factory Workmen's Compensation, and Corporate Group policies</strong> continue to attract statutory 18% GST as per government regulations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Detailed Cards -->
+  <section class="py-12 md:py-20 bg-white dark:bg-zinc-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+      {servicesDetail.map((service, index) => (
+        <article id={service.id} class="p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 hover-lift shadow-xs">
+          <!-- Card Header -->
+          <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-6 border-b border-zinc-100 dark:border-zinc-800">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-mono font-bold text-zinc-400">0{index + 1}</span>
+                <span class={`text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded ${service.badgeColor}`}>
+                  {service.gstBadge}
+                </span>
+                <span class="text-xs text-zinc-500 font-mono">• {service.partnerBrands}</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-zinc-50 text-balance">{service.title}</h2>
+              <p class="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-semibold mt-1">
+                {service.startingRate}
+              </p>
+            </div>
+
+            <a
+              href={`https://wa.me/919824139239?text=${encodeURIComponent(service.waText)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md text-xs font-semibold bg-emerald-700 text-white hover:bg-emerald-800 transition-colors self-start shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+            >
+              <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.35.49 1.199.534 1.286.044.087.073.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.102-.115.434-.506.549-.68.116-.173.232-.144.39-.086.159.058 1.011.477 1.184.564.173.086.289.13.332.202.043.072.043.419-.101.824z"/></svg>
+              Consult Amrut Patel on WhatsApp
+            </a>
+          </div>
+
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed my-4">
+            {service.overview}
+          </p>
+
+          <div class="grid gap-6 sm:grid-cols-2 pt-2">
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-zinc-500 font-mono mb-2.5">Available Plans &amp; Covers</h3>
+              <ul class="space-y-2 text-xs text-zinc-700 dark:text-zinc-300">
+                {service.plansCovered.map((item) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-zinc-500 font-mono mb-2.5">Required Documents</h3>
+              <!-- Clean elevated light/dark document box (soft zinc-50 in light mode, dark zinc in dark mode) -->
+              <div class="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed shadow-xs">
+                {service.documentsNeeded}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

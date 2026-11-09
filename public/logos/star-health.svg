@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 54" fill="none">
+  <!-- Star Health Symbol -->
+  <g transform="translate(10, 8)">
+    <circle cx="19" cy="19" r="18" fill="#1e3a8a"/>
+    <!-- 5-point star -->
+    <path d="M19 8 L22 15 L29 16 L24 21 L25 28 L19 24 L13 28 L14 21 L9 16 L16 15 Z" fill="#f59e0b"/>
+  </g>
+  <text x="56" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" letter-spacing="0.5" fill="#1e3a8a" class="dark:fill-blue-300">STAR HEALTH</text>
+  <text x="56" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.8" fill="#71717a">AND ALLIED INSURANCE</text>
+</svg>

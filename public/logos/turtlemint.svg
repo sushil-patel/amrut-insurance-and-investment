@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 54" fill="none">
+  <!-- Turtlemint Turtle Shell Mark -->
+  <g transform="translate(10, 8)">
+    <circle cx="19" cy="19" r="18" fill="#10b981"/>
+    <!-- Turtle shell hexagonal patterns -->
+    <path d="M19 11 L25 15 L25 23 L19 27 L13 23 L13 15 Z" fill="#ffffff" opacity="0.9"/>
+    <circle cx="19" cy="19" r="3" fill="#10b981"/>
+  </g>
+  <text x="56" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" letter-spacing="0.2" fill="currentColor">turtlemint</text>
+  <text x="56" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" letter-spacing="0.5" fill="#10b981">INSURANCE PLATFORM</text>
+</svg>

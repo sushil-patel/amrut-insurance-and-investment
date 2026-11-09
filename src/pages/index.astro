@@ -1,0 +1,560 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const partnerBrands = [
+  { name: "Bajaj Allianz General Insurance", file: "/logos/bajaj-allianz.png" },
+  { name: "LIC - Life Insurance Corporation", file: "/logos/lic.png" },
+  { name: "TATA AIA Life Insurance", file: "/logos/tata-aia.png" },
+  { name: "Care Health Insurance", file: "/logos/care-health.png" },
+  { name: "Star Health and Allied Insurance", file: "/logos/star-health.png" },
+  { name: "Turtlemint Partner Network", file: "/logos/turtlemint.webp" },
+  { name: "RenewBuy Partner Network", file: "/logos/renewbuy.png" },
+];
+
+const starterPlans = [
+  {
+    category: "Two-Wheeler TP",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    basePrice: "₹538",
+    period: "/year*",
+    totalPrice: "₹635 with 18% GST",
+    tagline: "Mandatory third-party liability cover for scooters and bikes (<75cc)",
+    features: [
+      "Mandatory legal cover under MV Act",
+      "Valid across all RTO checkpoints in India",
+      "No physical inspection needed for active renewals",
+      "Comprehensive & Own Damage add-ons available",
+    ],
+    waMessage: "Hi Amrut Patel, I would like to get a quote for Two-Wheeler Insurance renewal.",
+  },
+  {
+    category: "Private Car (TP & Full)",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    basePrice: "₹2,094",
+    period: "/year*",
+    totalPrice: "₹2,471 with 18% GST",
+    tagline: "Statutory TP starts at ₹2,094* (<1000cc) | Full Comprehensive options",
+    features: [
+      "NCB bonus discount transfer up to 50%",
+      "Cashless body-shop network across Surat",
+      "Zero-Depreciation & Engine Protect options",
+      "Direct claim surveyor coordination",
+    ],
+    waMessage: "Hi Amrut Patel, please help me compare quotes for Private Car Insurance.",
+  },
+  {
+    category: "Family Health (Mediclaim)",
+    gstBadge: "0% GST Exemption",
+    badgeColor: "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+    basePrice: "₹450",
+    period: "/month*",
+    totalPrice: "Zero Tax (100% GST Exempt)",
+    tagline: "₹5 Lakh family floater with cashless admission in Surat hospitals",
+    features: [
+      "Save 18% tax under latest GST Council exemption",
+      "Cashless hospitalization at top Surat medical centers",
+      "Care Health, Star Health & Bajaj Allianz comparison",
+      "Tax saving deduction under Section 80D",
+    ],
+    waMessage: "Hi Amrut Patel, I would like to compare Family Health Insurance / Mediclaim plans with 0% GST.",
+  },
+  {
+    category: "Term Life Protection",
+    gstBadge: "0% GST Exemption",
+    badgeColor: "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800",
+    basePrice: "₹490",
+    period: "/month*",
+    totalPrice: "Zero Tax (100% GST Exempt)",
+    tagline: "₹1 Crore pure term life cover to secure your family's future",
+    features: [
+      "100% GST Exempt: Zero tax on base premium",
+      "LIC of India & TATA AIA Life plans",
+      "Industry-leading claim settlement track record",
+      "Tax deduction eligibility under Section 80C",
+    ],
+    waMessage: "Hi Amrut Patel, please guide me on ₹1 Crore Term Life Insurance plans.",
+  },
+  {
+    category: "Commercial Vehicle",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    basePrice: "IRDAI Tariff",
+    period: "/annual",
+    totalPrice: "Based on vehicle class & payload",
+    tagline: "Autos, tempo (Tata Ace/Bolero), delivery vans, and heavy trucks",
+    features: [
+      "Third-Party legal liability + Driver cover",
+      "IMT-23 coverage for commercial goods carriers",
+      "Passenger carrying permits (taxis/buses)",
+      "Dedicated surveyor support during claims",
+    ],
+    waMessage: "Hi Amrut Patel, I need insurance for a Commercial Vehicle (Auto/Tempo/Truck).",
+  },
+  {
+    category: "Personal Accident (PA)",
+    gstBadge: "18% Statutory GST",
+    badgeColor: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700",
+    basePrice: "₹375",
+    period: "/year*",
+    totalPrice: "₹443 with 18% GST",
+    tagline: "₹15 Lakh compulsory owner-driver cover or worldwide standalone PA",
+    features: [
+      "100% financial compensation for accidental death",
+      "Permanent total and partial disability payouts",
+      "Worldwide 24x7 coverage",
+      "Zero medical checkups required",
+    ],
+    waMessage: "Hi Amrut Patel, I would like to take Personal Accident (PA) insurance.",
+  },
+];
+
+const allCategories = [
+  {
+    id: "health",
+    title: "Health Insurance (Mediclaim)",
+    gstNotice: "0% GST Exemption",
+    description: "Individual, family floater, and senior citizen mediclaim policies with cashless hospital admission across Surat.",
+    tags: ["Care Health", "Star Health", "Bajaj Allianz", "Section 80D Tax Benefit"],
+  },
+  {
+    id: "car",
+    title: "Car Insurance - TP & Full",
+    gstNotice: "18% Statutory GST",
+    description: "Statutory third-party liability and comprehensive damage covers with zero-depreciation and engine protection add-ons.",
+    tags: ["Up to 50% NCB Transfer", "Zero-Dep Add-on", "Cashless Workshops", "Roadside Assistance"],
+  },
+  {
+    id: "twowheeler",
+    title: "Full Two-Wheeler Insurance",
+    gstNotice: "18% Statutory GST",
+    description: "Protection for bikes and scooters against road accidents, theft, fire, and mandatory third-party liability.",
+    tags: ["Starts at ₹538* TP", "Comprehensive OD", "Zero Paperwork", "Quick Renewal"],
+  },
+  {
+    id: "commercial",
+    title: "Commercial Vehicle Insurance",
+    gstNotice: "18% Statutory GST",
+    description: "Tailored policies for commercial auto-rickshaws, goods tempos (Tata Ace/Pickups), trucks, and private buses.",
+    tags: ["IMT-23 Cover", "Driver Liability", "Public & Private Carrier", "Surveyor Coordination"],
+  },
+  {
+    id: "fire",
+    title: "Fire & Special Perils Insurance",
+    gstNotice: "18% GST",
+    description: "Protection for commercial showrooms, retail shops, inventory godowns, and office assets against accidental fire and storm.",
+    tags: ["Building & Stock", "Burglary Cover", "MSME Package", "Surat Industrial Areas"],
+  },
+  {
+    id: "marine",
+    title: "Marine Cargo Insurance",
+    gstNotice: "18% GST",
+    description: "Transit insurance safeguarding textiles, raw materials, and machinery during transit by road, rail, air, or sea.",
+    tags: ["Inland Transit", "Annual Open Policy", "Export-Import", "Road Transit Protection"],
+  },
+  {
+    id: "pa",
+    title: "PA Insurance (Personal Accident)",
+    gstNotice: "18% GST",
+    description: "Fixed payout financial shield in case of accidental death, permanent total disability, or hospital confinement.",
+    tags: ["₹15L Owner-Driver", "24x7 Worldwide", "Weekly Disability", "Accident Medical Cover"],
+  },
+  {
+    id: "travel",
+    title: "Travel Insurance",
+    gstNotice: "18% GST",
+    description: "Domestic and international travel policies covering emergency medical hospitalizations, lost baggage, and flight cancellations.",
+    tags: ["Schengen Approved", "USA & Overseas Medical", "Baggage Loss", "Trip Cancellation"],
+  },
+  {
+    id: "home",
+    title: "Home Insurance",
+    gstNotice: "18% GST",
+    description: "Shield your residential apartment or house structure along with furniture, appliances, and valuables against fire and theft.",
+    tags: ["Structure & Contents", "Burglary Cover", "Natural Disasters", "Jewelry Protection"],
+  },
+  {
+    id: "worker",
+    title: "Factory & Worker Insurance",
+    gstNotice: "18% GST",
+    description: "Statutory Workmen's Compensation (WC Act) and industrial all-risk coverage for factory owners, contractors, and labor teams.",
+    tags: ["Workmen's Compensation (WC)", "Contractor All-Risk", "Machinery Breakdown", "Employer Liability"],
+  },
+  {
+    id: "pet",
+    title: "Pet Insurance",
+    gstNotice: "18% GST",
+    description: "Healthcare and surgery coverage for domestic dogs and cats including emergency treatments and third-party liabilities.",
+    tags: ["Surgery & Inpatient", "Accidental Trauma", "Third-Party Liability", "Dogs & Cats"],
+  },
+];
+---
+
+<Layout
+  title="Amrut Insurance | IRDAI Reg. 2017342 - Independent Insurance Advisory in Surat"
+  description="Consult Amrut Patel (IRDAI Reg. 2017342) in Udhna, Surat. Compare policies across 28+ insurers including Bajaj Allianz, LIC, TATA AIA, Care Health, Star Health, Turtlemint, and RenewBuy. Save 18% with 0% GST on Health & Life."
+>
+  <!-- Hero Section (Crisp, High-Contrast Light Mode with soft gradient) -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-zinc-50/80 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-900/40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <!-- Official Regulatory Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-300 mb-6 shadow-xs">
+          <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          <span>IRDAI Registration No. <strong>2017342</strong></span>
+          <span class="text-zinc-300 dark:text-zinc-700" aria-hidden="true">•</span>
+          <span>Udhna, Surat</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 leading-[1.12] mb-6 text-balance">
+          Get the right insurance at the right price, with reliable support.
+        </h1>
+
+        <p class="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl text-balance">
+          Welcome to Amrut Insurance. We are licensed independent insurance advisors in Surat representing <strong>28+ authorized insurers</strong> — including Bajaj Allianz, LIC, TATA AIA, Care Health, Star Health, Turtlemint, and RenewBuy. You deal directly with advisor <strong>Amrut Patel</strong> — with no automated bots, no telecalling spam, and hands-on claim assistance.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-10">
+          <a
+            href="https://wa.me/919824139239?text=Hello%20Amrut%20Patel%2C%20I%20would%20like%20to%20consult%20regarding%20insurance%20policies."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3.5 rounded-md font-semibold text-sm bg-emerald-700 text-white hover:bg-emerald-800 transition-colors flex items-center justify-center gap-2.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.35.49 1.199.534 1.286.044.087.073.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.102-.115.434-.506.549-.68.116-.173.232-.144.39-.086.159.058 1.011.477 1.184.564.173.086.289.13.332.202.043.072.043.419-.101.824z"/></svg>
+            Message Amrut Patel on WhatsApp
+          </a>
+          <a
+            href="tel:+919824139239"
+            class="px-6 py-3.5 rounded-md font-semibold text-sm border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 shadow-xs"
+          >
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Call Office: +91 98241 39239
+          </a>
+        </div>
+
+        <!-- Trust Badges (Zero false claims, pure verified points) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-zinc-200 dark:border-zinc-800 text-xs">
+          <div>
+            <div class="font-bold text-zinc-950 dark:text-zinc-100 text-sm">IRDAI Certified</div>
+            <div class="text-zinc-500 font-mono text-[11px]">Reg. No. 2017342</div>
+          </div>
+          <div>
+            <div class="font-bold text-zinc-950 dark:text-zinc-100 text-sm">28+ Insurers</div>
+            <div class="text-zinc-500 text-[11px]">Multi-Company Comparison</div>
+          </div>
+          <div>
+            <div class="font-bold text-zinc-950 dark:text-zinc-100 text-sm">0% GST Savings</div>
+            <div class="text-zinc-500 text-[11px]">On Health &amp; Term Life</div>
+          </div>
+          <div>
+            <div class="font-bold text-zinc-950 dark:text-zinc-100 text-sm">Direct Claims Help</div>
+            <div class="text-zinc-500 text-[11px]">Personal Support in Surat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landmark GST Exemption Feature Card -->
+  <section class="py-8 bg-emerald-50 dark:bg-emerald-950/20 border-b border-emerald-200 dark:border-emerald-900/40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-start gap-3">
+          <div class="h-9 w-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0 mt-0.5" aria-hidden="true">
+            %
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-sm font-bold text-emerald-950 dark:text-emerald-300">
+                GST Council Reform: 0% GST on Individual Health &amp; Life Insurance
+              </h2>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-600 text-white uppercase">Active</span>
+            </div>
+            <p class="text-xs text-emerald-800 dark:text-emerald-400 mt-1 max-w-3xl leading-relaxed">
+              Under the latest 56th GST Council notification, individual and family health insurance (mediclaim) and individual term life insurance are <strong>exempted from GST (0% Nil rate, saving you 18% directly)</strong>. Motor, commercial vehicle, and business risk policies continue under standard 18% GST.
+            </p>
+          </div>
+        </div>
+        <a
+          href="/services"
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-white dark:bg-zinc-900 border border-emerald-600/30 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-zinc-800 transition-colors flex-shrink-0 shadow-xs"
+        >
+          View Full GST Breakdown →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continuously Moving Horizontal Partner Brands Marquee with SOURCED LOGOS -->
+  <section class="py-10 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden" aria-labelledby="partners-title">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h2 id="partners-title" class="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500">
+          Partner Insurers &amp; Networks (28+ Companies)
+        </h2>
+        <span class="text-[11px] text-zinc-400 font-mono hidden sm:inline">
+          Hover to pause banner
+        </span>
+      </div>
+    </div>
+
+    <!-- Infinite Seamless Marquee Slider with Official Logos -->
+    <div class="relative w-full overflow-hidden">
+      <!-- Gradient Fade Edges -->
+      <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-white dark:from-zinc-950 to-transparent z-10" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-white dark:from-zinc-950 to-transparent z-10" aria-hidden="true"></div>
+
+      <div class="flex w-max animate-marquee items-center gap-6">
+        <!-- Logo Set 1 -->
+        <div class="flex items-center gap-6 px-4 flex-shrink-0">
+          {partnerBrands.map((brand) => (
+            <div class="h-16 px-6 rounded-xl bg-white border border-zinc-200 dark:border-zinc-800 shadow-xs flex items-center justify-center transition-transform hover:scale-105" title={brand.name}>
+              <img
+                src={brand.file}
+                alt={brand.name}
+                width="140"
+                height="40"
+                class="h-8 max-w-[130px] w-auto object-contain"
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+
+        <!-- Logo Set 2 (Exact Duplicate for Continuous Loop) -->
+        <div class="flex items-center gap-6 px-4 flex-shrink-0" aria-hidden="true">
+          {partnerBrands.map((brand) => (
+            <div class="h-16 px-6 rounded-xl bg-white border border-zinc-200 dark:border-zinc-800 shadow-xs flex items-center justify-center transition-transform hover:scale-105" title={brand.name}>
+              <img
+                src={brand.file}
+                alt=""
+                width="140"
+                height="40"
+                class="h-8 max-w-[130px] w-auto object-contain"
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Starter Premiums Section with GST Facts -->
+  <section id="pricing" class="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/30">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-semibold">
+            Honest &amp; Verified Rates
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 mt-1 text-balance">
+            Attractive Starter Premiums &amp; GST Details
+          </h2>
+          <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-2 max-w-2xl text-balance">
+            Statutory IRDAI third-party tariffs and verified starting premiums across leading insurers. Clear breakdown of GST applicability.
+          </p>
+        </div>
+        <div class="text-xs text-zinc-500 font-mono">
+          *Regulated by IRDAI &amp; GST Council norms
+        </div>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {starterPlans.map((plan) => (
+          <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover-lift flex flex-col justify-between shadow-xs">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class={`text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded ${plan.badgeColor}`}>
+                  {plan.gstBadge}
+                </span>
+                <span class="text-xs text-zinc-500 font-mono">{plan.totalPrice}</span>
+              </div>
+
+              <h3 class="text-lg font-bold text-zinc-950 dark:text-zinc-50 mb-1">{plan.category}</h3>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4">{plan.tagline}</p>
+
+              <div class="flex items-baseline gap-1.5 mb-5 pb-5 border-b border-zinc-100 dark:border-zinc-800">
+                <span class="text-3xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 tabular-nums">{plan.basePrice}</span>
+                <span class="text-xs text-zinc-500 font-mono">{plan.period}</span>
+              </div>
+
+              <ul class="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-400 mb-6">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={`https://wa.me/919824139239?text=${encodeURIComponent(plan.waMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-2.5 px-3 rounded-md border border-zinc-300 dark:border-zinc-700 hover:border-zinc-900 dark:hover:border-zinc-400 font-semibold text-xs text-center text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+            >
+              Consult Amrut Patel on WhatsApp →
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-[11px] text-zinc-500 mt-6 text-center leading-relaxed">
+        *Disclaimer: Two-wheeler TP statutory rate applies to &lt;75cc vehicles. Private car TP applies to &lt;1000cc engines per IRDAI gazette. Mediclaim and Term rates vary by age, health history, and selected coverage. Individual Life &amp; Health policies are 0% GST; Motor &amp; Commercial attract 18% GST.
+      </p>
+    </div>
+  </section>
+
+  <!-- Complete 11 Insurance Categories from WhatsApp Business Description -->
+  <section id="services" class="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-semibold">
+          Complete Insurance Advisory
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 mt-2 text-balance">
+          Insurance Advisor for All Types of Insurance
+        </h2>
+        <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-3 leading-relaxed text-balance">
+          Whether you need personal coverage, vehicle compliance, or commercial and factory protection in Surat, we provide impartial multi-insurer options.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {allCategories.map((item) => (
+          <article class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover-lift flex flex-col justify-between shadow-xs">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded ${item.gstNotice.includes('0%') ? 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700'}`}>
+                  {item.gstNotice}
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-zinc-950 dark:text-zinc-50 mb-2">{item.title}</h3>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
+                {item.description}
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-6">
+                {item.tags.map((tag) => (
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200/60 dark:border-zinc-700/60">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/919824139239?text=${encodeURIComponent(`Hi Amrut Patel, I would like to consult regarding ${item.title}.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline pt-3 border-t border-zinc-100 dark:border-zinc-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm"
+            >
+              Enquire on WhatsApp with Amrut Patel ↗
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 shadow-xs"
+        >
+          View Full Category Guidance &amp; Required Documents →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor Weakness vs. Amrut Insurance -->
+  <section class="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/30">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-semibold">
+          Human Advisory Over Generic Bots
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 mt-2 text-balance">
+          Why Families &amp; Businesses in Surat Work With a Local Advisor
+        </h2>
+        <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-3 leading-relaxed text-balance">
+          Insurance is not just buying a PDF online. It is having someone answer your phone call when an emergency happens at a hospital or after a vehicle accident.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
+          <div class="h-9 w-9 rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 flex items-center justify-center font-bold mb-4" aria-hidden="true">
+            01
+          </div>
+          <h3 class="font-bold text-zinc-950 dark:text-zinc-50 text-base mb-2">Claim Assistance at Hospital / Spot</h3>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            During medical hospitalizations or vehicle accidents, an automated bot loop cannot help coordinate with surveyors or hospital TPA desks. You call our personal line (+91 98241 39239) and we assist you directly through the settlement process.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
+          <div class="h-9 w-9 rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 flex items-center justify-center font-bold mb-4" aria-hidden="true">
+            02
+          </div>
+          <h3 class="font-bold text-zinc-950 dark:text-zinc-50 text-base mb-2">Unbiased Multi-Insurer Comparisons</h3>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            We are not tied to a single insurance brand. We review room rent caps, pre-existing waiting periods, and network hospitals across Bajaj Allianz, Star Health, Care Health, LIC, and TATA AIA to recommend the policy that genuinely suits you.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs">
+          <div class="h-9 w-9 rounded-lg bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 flex items-center justify-center font-bold mb-4" aria-hidden="true">
+            03
+          </div>
+          <h3 class="font-bold text-zinc-950 dark:text-zinc-50 text-base mb-2">Walk-In Office in Udhna, Surat</h3>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Our office is physically located at Shop No.123, Palika Bazar, near Komal Circle, Udhna. You can visit in person for policy document collections, claim forms, endorsements, and renewals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA & Office Bar -->
+  <section class="py-16 md:py-20 bg-zinc-900 text-zinc-100 dark:bg-zinc-950 border-t border-zinc-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono mb-4 text-emerald-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+            IRDAI Reg. 2017342 • Personal Consultation
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-2 text-balance">
+            Need guidance or a renewal quote today?
+          </h2>
+          <p class="text-zinc-300 text-sm max-w-xl text-balance">
+            Message Amrut Patel directly on WhatsApp with your vehicle RC or medical requirement, or visit our office at Palika Bazar, Udhna.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+          <a
+            href="https://wa.me/919824139239?text=Hello%20Amrut%20Patel%2C%20I%20would%20like%20to%20consult%20regarding%20insurance."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-6 py-3.5 rounded-md font-semibold text-sm bg-emerald-600 text-white hover:bg-emerald-700 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 shadow-sm"
+          >
+            Chat on WhatsApp (+91 98241 39239)
+          </a>
+          <a
+            href="/contact"
+            class="w-full sm:w-auto px-6 py-3.5 rounded-md font-semibold text-sm border border-zinc-700 bg-white/5 hover:bg-white/10 text-white text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shadow-xs"
+          >
+            Office Address &amp; Directions →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

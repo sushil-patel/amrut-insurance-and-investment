@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- AI (Amrut Insurance) Favicon -->
+  <rect width="32" height="32" rx="7" fill="#0f172a"/>
+  <!-- A letter -->
+  <path d="M9 23 L14.5 9 L20 23" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M11 18 H18" stroke="#10b981" stroke-width="2"/>
+  <!-- I letter -->
+  <path d="M23.5 9 V23" stroke="#10b981" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="23.5" cy="6.5" r="1.2" fill="#10b981"/>
+</svg>
