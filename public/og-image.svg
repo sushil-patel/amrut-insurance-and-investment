@@ -25,11 +25,11 @@
 
   <!-- Brand Title -->
   <text x="100" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#ffffff" letter-spacing="-1">Amrut Insurance</text>
-  <text x="100" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="600" fill="#10b981">Certified Insurance Advisor • Surat, Gujarat</text>
+  <text x="100" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="600" fill="#10b981">Certified Insurance Advisory • 15+ Years Trust • Pan-India</text>
 
   <!-- Tagline -->
-  <text x="100" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#a3a3a3">Get the right insurance at the right price, with reliable support.</text>
-  <text x="100" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#737373">Partner of 28+ Insurers • Health | Motor (TP &amp; Full) | Life | Commercial | Factory</text>
+  <text x="100" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#a3a3a3">5,000+ Protected Families &amp; Businesses Nationwide.</text>
+  <text x="100" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#737373">Partner of 28+ Insurers • Health (0% GST) | Motor | Life (0% GST) | Commercial</text>
 
   <!-- Contact Bar -->
   <g transform="translate(100, 480)">
@@ -37,7 +37,7 @@
     <!-- Phone -->
     <text x="40" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#ffffff">📞 +91 98241 39239</text>
     <!-- Location -->
-    <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#a3a3a3">📍 Shop No.123, Palika Bazar, Udhna, Surat</text>
+    <text x="360" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#a3a3a3">📍 Palika Bazar, Udhna • Pan-India Digital Advisory</text>
     <!-- Instant Delivery -->
     <text x="820" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#10b981">⚡ 15-Min Policy PDF</text>
   </g>

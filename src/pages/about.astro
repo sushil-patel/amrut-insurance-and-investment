@@ -19,27 +19,55 @@ const principles = [
     description: "Direct help when admitted to a hospital or during a vehicle road accident. Call Amrut Patel directly — no bot menus.",
   },
 ];
+
+const achievements = [
+  { value: "15+", label: "Years Experience", desc: "IRDAI certified insurance advisory" },
+  { value: "5,000+", label: "Protected Families", desc: "Across Gujarat and nationwide" },
+  { value: "28+", label: "Insurer Partners", desc: "LIC, Star, Care, Bajaj, Tata & more" },
+  { value: "100%", label: "Direct Support", desc: "Zero spam bots, personal attention" },
+];
 ---
 
 <Layout
-  title="About Amrut Patel | IRDAI Reg. 2017342 Insurance Advisor Surat"
-  description="Meet Amrut Patel, licensed insurance advisor (IRDAI Reg. 2017342) in Udhna, Surat. Independent partner of 28+ leading insurers."
+  title="About Amrut Patel | IRDAI Reg. 2017342 Insurance Advisor"
+  description="Meet Amrut Patel, licensed insurance advisor (IRDAI Reg. 2017342). 15+ years experience, 5,000+ protected families across India. Independent partner of 28+ leading insurers."
   canonicalURL="https://amrutinsurance.in/about"
 >
-  <!-- Page Header (Clean flat background, high contrast in both themes) -->
+  <!-- Page Header -->
   <div class="py-10 md:py-14 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-xs font-mono text-zinc-700 dark:text-zinc-300 mb-3 shadow-xs">
           <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-          IRDAI Reg. 2017342
+          IRDAI Reg. 2017342 • 15+ Years Trust • Pan-India
         </div>
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 mb-2">
           About Amrut Patel
         </h1>
         <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-          Licensed insurance advisor based in Udhna, Surat. Personal guidance without call-center pressure.
+          IRDAI-licensed insurance advisor with 15+ years of experience and 5,000+ satisfied clients across India. Direct, impartial advisory without call-center pressure.
         </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Achievements Stats -->
+  <div class="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {achievements.map((item) => (
+          <div class="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/40">
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-700 dark:text-emerald-400 tracking-tight font-mono">
+              {item.value}
+            </div>
+            <div class="text-xs sm:text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1">
+              {item.label}
+            </div>
+            <div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
+              {item.desc}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </div>
@@ -53,10 +81,10 @@ const principles = [
             Real Advisor. Real Help. No Automated Bots.
           </h2>
           <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Most online websites sell policies through automated computer bots and call centers. When an emergency happens, it is difficult to reach someone who actually knows you.
+            Most online portals sell policies through automated computer bots and call centers. When a hospital emergency or motor accident happens, it is frustrating to navigate IVR menus without reaching someone who actually knows you.
           </p>
           <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            At <strong>Amrut Insurance</strong>, advisor <strong>Amrut Patel</strong> assists you personally — from picking the right policy to filing hospital or vehicle accident claims.
+            At <strong>Amrut Insurance</strong>, advisor <strong>Amrut Patel</strong> assists you personally — from picking the right policy with optimal coverage to handling hospital cashless documentation and vehicle claim settlements nationwide.
           </p>
 
           <!-- Clarification Box -->
@@ -93,8 +121,8 @@ const principles = [
               <span class="font-semibold text-zinc-900 dark:text-zinc-100">28+ Insurers</span>
             </div>
             <div class="flex items-center justify-between pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
-              <span class="text-zinc-500">Surat Office</span>
-              <span class="text-zinc-900 dark:text-zinc-100">Shop 123, Palika Bazar, Udhna</span>
+              <span class="text-zinc-500">Head Office</span>
+              <span class="text-zinc-900 dark:text-zinc-100">Palika Bazar, Udhna (Pan-India Service)</span>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-zinc-500">Phone</span>

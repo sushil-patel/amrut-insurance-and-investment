@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = "Amrut Insurance - Licensed IRDAI Reg. 2017342 Insurance Advisor in Surat. Impartial guidance across Bajaj Allianz, LIC, TATA AIA, Care Health, Star Health, Turtlemint, and RenewBuy. Zero bot spam, direct advisor consultation.",
+  description = "Amrut Insurance - Licensed IRDAI Reg. 2017342 Insurance Advisory. 15+ years experience, 5,000+ satisfied clients across India. Impartial guidance across Bajaj Allianz, LIC, TATA AIA, Care Health, Star Health, Turtlemint, and RenewBuy. Zero bot spam, direct advisor consultation.",
   canonicalURL = "https://amrutinsurance.in",
   ogImage = "/og-image.svg",
 } = Astro.props;
@@ -21,10 +21,16 @@ const fullTitle = title.includes("Amrut") ? title : `${title} | Amrut Insurance`
 const phone = "+919824139239";
 const phoneDisplay = "+91 98241 39239";
 const email = "amrutpatel39@gmail.com";
-const address = "Shop No.123, Palika Bazar, Nr. Komal International Circle, Bamroli Road, Udhna, Surat 395002";
+const address = "Shop No.123, Palika Bazar, Nr. Komal International Circle, Bamroli Road, Udhna, Gujarat 395002";
 const googleMapsURL = "https://maps.app.goo.gl/gg2pz327yyXU8Nxv9";
 const whatsappURL = `https://wa.me/919824139239?text=${encodeURIComponent("Hello Amrut Patel, I would like to consult regarding insurance policies.")}`;
-const currentPath = Astro.url.pathname;
+
+const rawPath = Astro.url.pathname;
+const normalizedPath = rawPath.replace(/\/+$/, '') || '/';
+const isHome = normalizedPath === '/';
+const isServices = normalizedPath.startsWith('/services');
+const isAbout = normalizedPath.startsWith('/about');
+const isContact = normalizedPath.startsWith('/contact');
 ---
 
 <!doctype html>
@@ -61,7 +67,7 @@ const currentPath = Astro.url.pathname;
         "@type": "Person",
         "name": "Amrut Patel"
       },
-      "description": "Licensed IRDAI Registered Insurance Advisory in Surat offering health, life, motor, commercial and factory risk covers.",
+      "description": "Licensed IRDAI Registered Insurance Advisory with 15+ years experience and 5,000+ families protected across India, offering health, life, motor, commercial and factory risk covers.",
       "license": "IRDAI Registration No. 2017342",
       "url": "https://amrutinsurance.in",
       "telephone": phone,
@@ -69,7 +75,7 @@ const currentPath = Astro.url.pathname;
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Shop No.123, Palika Bazar, Nr. Komal International Circle, Bamroli Road",
-        "addressLocality": "Udhna, Surat",
+        "addressLocality": "Udhna",
         "addressRegion": "Gujarat",
         "postalCode": "395002",
         "addressCountry": "IN"
@@ -148,17 +154,37 @@ const currentPath = Astro.url.pathname;
           </a>
 
           <!-- Desktop Navigation Links -->
-          <div class="hidden md:flex items-center gap-1">
-            <a href="/" class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 ${currentPath === '/' ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}>
+          <div class="hidden md:flex items-center gap-1" id="desktop-nav">
+            <a
+              href="/"
+              data-nav="/"
+              aria-current={isHome ? 'page' : undefined}
+              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${isHome ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-700' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
+            >
               Home
             </a>
-            <a href="/services" class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 ${currentPath.startsWith('/services') ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}>
-              Services &amp; GST Rates
+            <a
+              href="/services"
+              data-nav="/services"
+              aria-current={isServices ? 'page' : undefined}
+              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${isServices ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-700' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
+            >
+              Services &amp; Plans
             </a>
-            <a href="/about" class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 ${currentPath === '/about' ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}>
+            <a
+              href="/about"
+              data-nav="/about"
+              aria-current={isAbout ? 'page' : undefined}
+              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${isAbout ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-700' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
+            >
               About Amrut Patel
             </a>
-            <a href="/contact" class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 ${currentPath === '/contact' ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}>
+            <a
+              href="/contact"
+              data-nav="/contact"
+              aria-current={isContact ? 'page' : undefined}
+              class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${isContact ? 'text-zinc-950 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-50 font-semibold ring-1 ring-zinc-300 dark:ring-zinc-700' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-900'}`}
+            >
               Contact &amp; Office
             </a>
           </div>
@@ -215,10 +241,10 @@ const currentPath = Astro.url.pathname;
 
       <!-- Mobile Dropdown Navigation -->
       <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-4 space-y-2">
-        <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800">Home</a>
-        <a href="/services" class="block px-3 py-2 rounded-md text-base font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800">Services &amp; GST Exemption</a>
-        <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800">About Amrut Patel</a>
-        <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800">Office Location &amp; Contact</a>
+        <a href="/" data-nav="/" class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${isHome ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 font-semibold' : 'text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>Home</a>
+        <a href="/services" data-nav="/services" class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${isServices ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 font-semibold' : 'text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>Services &amp; Plans</a>
+        <a href="/about" data-nav="/about" class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${isAbout ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 font-semibold' : 'text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>About Amrut Patel</a>
+        <a href="/contact" data-nav="/contact" class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${isContact ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 font-semibold' : 'text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}>Office Location &amp; Contact</a>
         <div class="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2">
           <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="w-full text-center py-2.5 rounded-md font-semibold text-sm bg-emerald-700 text-white hover:bg-emerald-800">
             Message Amrut Patel on WhatsApp
@@ -246,10 +272,10 @@ const currentPath = Astro.url.pathname;
               <span class="font-extrabold text-lg text-zinc-950 dark:text-zinc-50">Amrut Insurance</span>
             </div>
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Official IRDAI Reg. No. <strong>2017342</strong>. Certified insurance advisor providing independent policy advisory across Surat.
+              Official IRDAI Reg. No. <strong>2017342</strong>. Certified insurance advisor with 15+ years of trusted advisory, protecting 5,000+ families and businesses across India.
             </p>
             <div class="p-3 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-[11px] text-zinc-600 dark:text-zinc-400 leading-normal">
-              <strong>GST Notice:</strong> Individual Life &amp; Health policies are <strong>100% GST Exempt (0% GST)</strong> per the 56th GST Council reform. Motor and commercial policies remain subject to statutory 18% GST.
+              <strong>GST Benefit:</strong> Individual Life &amp; Health policies are <strong>100% GST Exempt (0% GST)</strong> per the 56th GST Council reform — save 18% directly on your policy premium along with Section 80D &amp; 80C tax deductions.
             </div>
             <div class="text-[11px] text-zinc-500 font-mono">
               Note: Firm trade name is Amrut Insurance &amp; Investment. We operate solely as an insurance advisory firm and do not provide financial investment instruments.
@@ -262,11 +288,13 @@ const currentPath = Astro.url.pathname;
               Insurance Portfolio
             </h3>
             <ul class="space-y-2.5 text-xs text-zinc-600 dark:text-zinc-400">
-              <li><a href="/services#motor" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Motor (Bike, Car, Commercial - 18% GST)</a></li>
-              <li><a href="/services#health" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Health Insurance / Mediclaim (0% GST)</a></li>
-              <li><a href="/services#life" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Term &amp; Life Insurance (0% GST)</a></li>
+              <li><a href="/services#twowheeler" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Two-Wheeler Insurance (From ₹714)</a></li>
+              <li><a href="/services#motor" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Private Car Insurance (From ₹2,094)</a></li>
+              <li><a href="/services#health" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Health Insurance / Mediclaim (0% GST - Save 18%)</a></li>
+              <li><a href="/services#life" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Term &amp; Life Insurance (0% GST - Tax Free)</a></li>
+              <li><a href="/services#commercial" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Commercial Vehicles &amp; Fleet</a></li>
               <li><a href="/services#pa" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Personal Accident (PA) Cover</a></li>
-              <li><a href="/services#commercial" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Fire, Marine &amp; Factory Insurance</a></li>
+              <li><a href="/services#fire" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Fire, Marine &amp; Factory Insurance</a></li>
               <li><a href="/services#worker" class="hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">Workmen &amp; Worker Compensation</a></li>
             </ul>
           </div>
@@ -297,7 +325,7 @@ const currentPath = Astro.url.pathname;
               <p class="leading-relaxed">
                 Shop No.123, Palika Bazar,<br />
                 Nr. Komal International Circle,<br />
-                Bamroli Road, Udhna, Surat 395002
+                Bamroli Road, Udhna, Gujarat 395002
               </p>
               <p>
                 <a href={`tel:${phone}`} class="font-semibold text-zinc-950 dark:text-zinc-100 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-500 rounded-sm">
@@ -370,6 +398,27 @@ const currentPath = Astro.url.pathname;
           mobileMenu.classList.toggle('hidden');
         });
       }
+
+      // Sync active state on client-side navigation
+      (function() {
+        const path = window.location.pathname.replace(/\/+$/, '') || '/';
+        const navLinks = document.querySelectorAll('[data-nav]');
+        navLinks.forEach(link => {
+          const nav = link.getAttribute('data-nav');
+          const isMatch = nav === '/' ? path === '/' : path.startsWith(nav);
+          if (isMatch) {
+            link.setAttribute('aria-current', 'page');
+            if (link.closest('#desktop-nav')) {
+              link.classList.remove('text-zinc-600', 'dark:text-zinc-400');
+              link.classList.add('text-zinc-950', 'bg-zinc-100', 'dark:bg-zinc-800', 'dark:text-zinc-50', 'font-semibold', 'ring-1', 'ring-zinc-300', 'dark:ring-zinc-700');
+            }
+            if (link.closest('#mobile-menu')) {
+              link.classList.remove('text-zinc-900', 'dark:text-zinc-100');
+              link.classList.add('text-emerald-700', 'dark:text-emerald-400', 'bg-emerald-50', 'dark:bg-emerald-950/40', 'font-semibold');
+            }
+          }
+        });
+      })();
     </script>
   </body>
 </html>
